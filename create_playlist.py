@@ -19,12 +19,12 @@ else:
 # Read in the names and artist of the songs
 with open(file_name) as my_file:
     songs = my_file.read().splitlines()
-songs = [(x.split(' - ')[0], x.split(' - ')[1]) for x in songs]
+songs = [(x.split('-')[0].strip(), x.split('-')[1].strip()) for x in songs]
 
 song_ids = []
 for song in songs:
-    track = song[0]
-    name = song[1]
+    name = song[0]
+    track = song[1]
     results = spotify.search(q='artist:' + name + ' track: ' + track, type='track')
     items = results['tracks']['items']
     song_ids.append(items[0]['id'])
